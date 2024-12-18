@@ -12,21 +12,6 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
-
-  app:
-    build:
-      context: ./
-      dockerfile: Dockerfile.pnpm
-    ports:
-      - 3000:3000
-    depends_on:
-      - postgres
-    environment:
-      - DATABASE_URL=http://localhost:5432
-      - DOCKER_CONTAINER=true
-    volumes:
-      - ./:/app
-      - /app/node_modules
 volumes:
   db:
     driver: local
